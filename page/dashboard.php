@@ -1,14 +1,14 @@
 <?php
-    if(isset($_SESSION['user_id'])){
-        echo $_SESSION['user_id'];
-    }
+if (isset($_SESSION['user_id'])) {
+    echo $_SESSION['user_id'];
+}
 
-    echo 'LEVEL:'. (isAdmin() ? 'admin':'user');
-    // if(isAdmin()){
-    //     echo 'LEVEL : admin';
-    // }else{
-    //     echo 'LEVEL : user';
-    // }
+echo 'LEVEL: ' . (isAdmin() ? 'ADMIN' : 'USER');
+// if(isAdmin()){
+//     echo 'LEVEL : admin';
+// }else{
+//     echo 'LEVEL : user';
+// }
 
 ?>
 
