@@ -20,14 +20,22 @@ if (isset($_POST['name'], $_POST['username'], $_POST['passwd'], $_FILES['photo']
         $usernameErr = 'please choose another username !';
     }
     if (empty($nameErr) && empty($usernameErr) && empty($passwdErr)) {
-        if (createUser($name, $username, $passwd, $photo)) {
-            $name = $username = '';
-            echo '<div class="alert alert-success" role="alert">
-            Create successful!
+
+        try {
+            if (createUser($name, $username, $passwd, $photo)) {
+                $name = $username = '';
+                echo '<div class="alert alert-success" role="alert">
+            Create successful! <a href=""></a>
             </div>';
-        } else {
-            echo '<div class="alert alert-danger" role="alert">
+            } else {
+                echo '<div class="alert alert-danger" role="alert">
             Create failed! Please try again.
+            </div>';
+            }
+
+        } catch (Exception $e) {
+            echo '<div class="alert alert-danger" role="alert">
+           ' . $e->getMessage() . '
             </div>';
         }
     }
@@ -40,7 +48,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['passwd'], $_FILES['photo']
     <div class="d-flex justify-content-center">
         <input name="photo" type="file" id="profileUpload" hidden>
         <label role="button" for="profileUpload">
-            <img src="./assets/images/emptyuser.png" class="rounded img-thumbnail" style="max-width:200px">
+            <img src="./assets/images/empty.png" class="rounded img-thumbnail" style="max-width:200px">
         </label>
     </div>
     <div class="mb-3">
